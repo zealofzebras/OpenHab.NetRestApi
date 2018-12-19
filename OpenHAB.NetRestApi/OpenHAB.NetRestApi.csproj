@@ -1,151 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{807FEF64-BBC1-40BE-84AA-6138D7B4FC04}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OpenHAB.NetRestApi</RootNamespace>
-    <AssemblyName>OpenHAB.NetRestApi</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.1.3</Version>
+    <Authors>Jörg Flechsig</Authors>
+    <Company />
+    <Description>A .Net REST client for the home automation framework OpenHAB</Description>
+    <PackageLicenseUrl>https://github.com/ConfusedHorse/OpenHAB.NetRestApi/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ConfusedHorse/OpenHAB.NetRestApi</PackageProjectUrl>
+    <PackageTags>OpenHAB REST .NET</PackageTags>
+    <Copyright>Copyright 2017</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="RestSharp" Version="106.5.4" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Constants\Command.cs" />
-    <Compile Include="Constants\RuleMemberType.cs" />
-    <Compile Include="Constants\WidgetType.cs" />
-    <Compile Include="Helpers\EnumerableExtension.cs" />
-    <Compile Include="Helpers\Json.cs" />
-    <Compile Include="Helpers\NewtonsoftJsonSerializer.cs" />
-    <Compile Include="Helpers\Resource.cs" />
-    <Compile Include="Models\Action.cs" />
-    <Compile Include="Models\Binding.cs" />
-    <Compile Include="Models\Channel.cs" />
-    <Compile Include="Models\ChannelGroup.cs" />
-    <Compile Include="Models\Events\AttemptedReconnect.cs" />
-    <Compile Include="Models\Events\TerminatedUnexpectedlyEvent.cs" />
-    <Compile Include="Models\Events\ItemUpdatedEvent.cs" />
-    <Compile Include="Models\Output.cs" />
-    <Compile Include="Models\Stream.cs" />
-    <Compile Include="Models\Context.cs" />
-    <Compile Include="Models\Header.cs" />
-    <Compile Include="Models\Homepage.cs" />
-    <Compile Include="Models\LinkedPage.cs" />
-    <Compile Include="Models\Page.cs" />
-    <Compile Include="Models\Parent.cs" />
-    <Compile Include="Models\ServiceConfiguration.cs" />
-    <Compile Include="Models\Firmware.cs" />
-    <Compile Include="Models\Link.cs" />
-    <Compile Include="Models\ChannelType.cs" />
-    <Compile Include="Models\Condition.cs" />
-    <Compile Include="Models\ConfigDescription.cs" />
-    <Compile Include="Models\Events\ItemRemovedEvent.cs" />
-    <Compile Include="Models\Events\ItemChannelLinkAddedEvent.cs" />
-    <Compile Include="Models\Events\ItemChannelLinkRemovedEvent.cs" />
-    <Compile Include="Models\Events\ItemAddedEvent.cs" />
-    <Compile Include="Models\Events\RuleUpdatedEvent.cs" />
-    <Compile Include="Models\Events\RuleAddedEvent.cs" />
-    <Compile Include="Models\Events\RuleRemovedEvent.cs" />
-    <Compile Include="Models\Events\RuleStatusInfoEvent.cs" />
-    <Compile Include="Models\Events\PlayUrlEvent.cs" />
-    <Compile Include="Models\Events\InboxRemovedEvent.cs" />
-    <Compile Include="Models\Events\InboxAddedEvent.cs" />
-    <Compile Include="Models\Events\ThingAddedEvent.cs" />
-    <Compile Include="Models\Events\ThingUpdatedEvent.cs" />
-    <Compile Include="Models\Events\ThingRemovedEvent.cs" />
-    <Compile Include="Models\Events\ThingStatusInfoChangedEvent.cs" />
-    <Compile Include="Models\Events\ConfigStatusInfoEvent.cs" />
-    <Compile Include="Models\Extension.cs" />
-    <Compile Include="Models\ExtensionType.cs" />
-    <Compile Include="Models\FilterCriteria.cs" />
-    <Compile Include="Models\Inbox.cs" />
-    <Compile Include="Models\Interpreter.cs" />
-    <Compile Include="Models\Item.cs" />
-    <Compile Include="Models\ModuleType.cs" />
-    <Compile Include="Models\Parameter.cs" />
-    <Compile Include="Models\ParameterGroup.cs" />
-    <Compile Include="Models\Option.cs" />
-    <Compile Include="Models\Property.cs" />
-    <Compile Include="Models\Rule.cs" />
-    <Compile Include="Models\Service.cs" />
-    <Compile Include="Models\Sitemap.cs" />
-    <Compile Include="Models\StateDescription.cs" />
-    <Compile Include="Models\Events\OpenHabEvent.cs" />
-    <Compile Include="Models\Events\ItemCommandEvent.cs" />
-    <Compile Include="Models\Events\ThingStatusInfoEvent.cs" />
-    <Compile Include="Models\Events\ItemStateChangedEvent.cs" />
-    <Compile Include="Models\Events\ItemStateEvent.cs" />
-    <Compile Include="Models\Events\UnknownEvent.cs" />
-    <Compile Include="Models\RequestHeader.cs" />
-    <Compile Include="Models\StatusInfo.cs" />
-    <Compile Include="Models\Subscription.cs" />
-    <Compile Include="Models\Template.cs" />
-    <Compile Include="Models\Thing.cs" />
-    <Compile Include="Models\ThingType.cs" />
-    <Compile Include="Models\Trigger.cs" />
-    <Compile Include="Models\Widget.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RestApi\OpenHab.cs" />
-    <Compile Include="RestApi\OpenHabRestClient.cs" />
-    <Compile Include="Services\BindingService.cs" />
-    <Compile Include="Services\ChannelTypeService.cs" />
-    <Compile Include="Services\ConfigDescriptionService.cs" />
-    <Compile Include="Services\DefaultService.cs" />
-    <Compile Include="Services\DiscoveryService.cs" />
-    <Compile Include="Services\EventService.cs" />
-    <Compile Include="Services\ExtensionService.cs" />
-    <Compile Include="Services\InboxService.cs" />
-    <Compile Include="Services\ItemService.cs" />
-    <Compile Include="Services\LinkService.cs" />
-    <Compile Include="Services\ModuleTypeService.cs" />
-    <Compile Include="Services\PersistenceService.cs" />
-    <Compile Include="Services\RuleService.cs" />
-    <Compile Include="Services\ServiceService.cs" />
-    <Compile Include="Services\SitemapService.cs" />
-    <Compile Include="Services\TemplateService.cs" />
-    <Compile Include="Services\ThingService.cs" />
-    <Compile Include="Services\ThingTypeService.cs" />
-    <Compile Include="Services\UuidService.cs" />
-    <Compile Include="Services\VoiceService.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

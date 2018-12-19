@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -10,7 +11,7 @@ using RestSharp;
 
 namespace OpenHAB.NetRestApi.RestApi
 {
-    public sealed class OpenHabRestClient
+    public class OpenHabRestClient
     {
         #region Fields
 
@@ -44,9 +45,24 @@ namespace OpenHAB.NetRestApi.RestApi
         {
             Url = url;
             RestClient = new RestClient(url);
+            
             if (!TestConnection())
                 throw new ArgumentException($"Unable to establish connection with given url: ({url})");
         }
+
+        internal OpenHabRestClient(Uri uri, string username, string password)
+        {
+            Url = uri.ToString();
+            RestClient = new RestClient(uri);
+
+            RestClient.AddDefaultHeader("Authorization", new AuthenticationHeaderValue("Basic",
+                    Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(string.Format("{0}:{1}", username, password)))).ToString());
+
+
+            if (!TestConnection())
+                throw new ArgumentException($"Unable to establish connection with given url: ({Url})");
+        }
+
 
         public bool TestConnection()
         {
