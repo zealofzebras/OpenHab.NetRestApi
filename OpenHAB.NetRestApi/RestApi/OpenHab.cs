@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 
 namespace OpenHAB.NetRestApi.RestApi
 {
@@ -38,6 +39,8 @@ namespace OpenHAB.NetRestApi.RestApi
         }
 
         internal static OpenHabRestClient RestClient { get; private set; }
+
+        public static IWebProxy Proxy { get; set; }
 
         #endregion
     }

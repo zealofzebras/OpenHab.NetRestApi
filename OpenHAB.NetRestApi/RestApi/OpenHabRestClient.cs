@@ -45,7 +45,10 @@ namespace OpenHAB.NetRestApi.RestApi
         {
             Url = url;
             RestClient = new RestClient(url);
-            
+
+            if (OpenHab.Proxy != null)
+                RestClient.Proxy = OpenHab.Proxy;
+
             if (!TestConnection())
                 throw new ArgumentException($"Unable to establish connection with given url: ({url})");
         }
@@ -54,6 +57,9 @@ namespace OpenHAB.NetRestApi.RestApi
         {
             Url = uri.ToString();
             RestClient = new RestClient(uri);
+
+            if (OpenHab.Proxy != null)
+                RestClient.Proxy = OpenHab.Proxy; 
 
             RestClient.AddDefaultHeader("Authorization", new AuthenticationHeaderValue("Basic",
                     Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(string.Format("{0}:{1}", username, password)))).ToString());

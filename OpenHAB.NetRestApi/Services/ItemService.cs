@@ -162,7 +162,10 @@ namespace OpenHAB.NetRestApi.Services
             CancellationToken token = default(CancellationToken))
         {
             var resource = $"/items/{itemname}/state";
-            return OpenHab.RestClient.ExecuteRequestAsync(Method.DELETE, resource, token: token);
+            var result = OpenHab.RestClient.ExecuteRequestAsync(Method.GET, resource, requestHeaders: new RequestHeaderCollection() {
+                RequestHeader.AcceptPlainText
+            }, token: token);
+            return result;
         }
 
         /// <summary>
